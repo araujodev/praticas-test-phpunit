@@ -1,5 +1,5 @@
 <?php
-namespace CDC\Loja\Produto;
+namespace CDC\Loja\Carrinho;
 
 require "./vendor/autoload.php";
 
@@ -8,7 +8,7 @@ use CDC\Loja\Produto\Produto;
 use CDC\Loja\Produto\MaiorEMenor;
 use PHPUnit_Framework_TestCase as PHPUnit;
 
-class MaiorEMenorTest extends PHPUnit 
+class ApenasUmProdutoCarrinhoTest extends PHPUnit 
 {
     public function seeder()
     {
@@ -17,24 +17,15 @@ class MaiorEMenorTest extends PHPUnit
         $carrinho->adiciona(
             new Produto("Geladeira", 450.00)
         );
-
-        $carrinho->adiciona(
-            new Produto("Secador de Cabelo", 80.00)
-        );
-
-        $carrinho->adiciona(
-            new Produto("Jogo de Prato", 250.00)
-        );
-
         return $carrinho;
-    } 
-    
+    }
+
     public function testMenor()
     {
         $maiorMenorObject = new MaiorEMenor();
         $maiorMenorObject->encontra($this->seeder());
 
-        $this->assertEquals("Secador de Cabelo", $maiorMenorObject->getMenor()->getNome());
+        $this->assertEquals("Geladeira", $maiorMenorObject->getMenor()->getNome());
     }
 
     public function testMaior()
