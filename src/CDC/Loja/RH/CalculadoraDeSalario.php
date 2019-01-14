@@ -14,7 +14,14 @@ class CalculadoraDeSalario
                 return $funcionario->getSalario() * 0.8;
             return $funcionario->getSalario() * 0.9;
         }
-        return 425.00;
+        if($funcionario->getCargo() === TabelaCargos::DBA || $funcionario->getCargo() === TabelaCargos::TESTADOR){
+            if($funcionario->getSalario() > 2500)
+                return $funcionario->getSalario() * 0.75;
+            return $funcionario->getSalario() * 0.85;
+        }
+        
+        throw new Exception("Error Processing Request", 1);
+        
     }
 }
 

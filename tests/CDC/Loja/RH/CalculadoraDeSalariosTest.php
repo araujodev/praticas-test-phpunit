@@ -69,6 +69,25 @@ class CalculadoraDeSalariosTest extends PHPUnit
         );
     }
 
+    public function test_Calculo_Salario_DBAs_Com_Salario_Acima_Do_Limite()
+    {
+        $calculadora = new CalculadoraDeSalario();
+        $desenvolvedor = new Funcionario(
+            "Maurício",
+            4500.00,
+            TabelaCargos::DBA
+        );
+
+        $salario = $calculadora->calculaSalario($desenvolvedor);
+
+        $this->assertEquals(
+            4500.00*0.75,
+            $salario,
+            null,
+            0.00001
+        );
+    }
+
 }
 
 ?>
